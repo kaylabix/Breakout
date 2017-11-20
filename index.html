@@ -103,6 +103,13 @@
                 ctx.fillText("Score: " + score, 8, 20);
             }
 
+            function gameOver()
+            {
+                ctx.font = "40px Arial";
+                ctx.fillStyle = "#0095DD";
+                ctx.fillText("GAME OVER", 100 , 175);
+            }
+
             function collisionDetection()
             {
                 for(c=0; c<brickColumnCount; c++)
@@ -120,7 +127,7 @@
                                 if(score == brickRowCount * brickColumnCount)
                                 {
                                     alert("YOU WIN, CONGRATS!");
-                                    document.locatio.reload();
+                                    document.location.reload(true);
                                 }
                             }
                         }
@@ -144,7 +151,7 @@
                     }
                     else
                     {
-                        alert("GAME OVER");
+                        alert("Game Over")
                         clearInterval(interval);
                         document.location.reload(true);
                     }
