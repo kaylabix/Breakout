@@ -86,9 +86,21 @@
 
                             bricks[c][r].x = brickX;
                             bricks[c][r].y = brickY;
+                            if(c == 0)
+                            {
+                                ctx.fillStyle = "#0095DD";
+                            }
+                            else if (c == 1)
+                            {
+                                ctx.fillStyle = "red";
+                            }
+                            else if (c == 2)
+                            {
+                                ctx.fillStyle = "purple";
+                            }
                             ctx.beginPath();
                             ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                            ctx.fillStyle = "#0095DD";
+                            //ctx.fillStyle = "#0095DD";
                             ctx.fill();
                             ctx.closePath();
                         }
@@ -101,13 +113,6 @@
                 ctx.font = "16px Arial";
                 ctx.fillStyle = "#0095DD";
                 ctx.fillText("Score: " + score, 8, 20);
-            }
-
-            function gameOver()
-            {
-                ctx.font = "40px Arial";
-                ctx.fillStyle = "#0095DD";
-                ctx.fillText("GAME OVER", 100 , 175);
             }
 
             function collisionDetection()
@@ -149,8 +154,11 @@
                     {
                         dy = -dy;
                     }
+                    
                     else
                     {
+                        console.log(paddleX);
+                        console.log(x);
                         alert("Game Over")
                         clearInterval(interval);
                         document.location.reload(true);
@@ -171,6 +179,7 @@
             //         paddleX = relativeX - paddleWidth/2;
             //     }
             // }
+
             function keyDownHandler(e)
             {
                 if(e.keyCode == 39)
@@ -199,11 +208,26 @@
             {
                 if(rightPressed)
                 {
-                    paddleX += 7;
+                    if(paddleX > canvas.width - paddleWidth)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        paddleX += 7;       
+                    }         
                 }
                 else if(leftPressed)
                 {
-                    paddleX -= 7;
+                    if(paddleX < 0)
+                    {
+                        return;
+                    }
+
+                    else
+                    {
+                        paddleX -= 7;
+                    }
                 }
             }
 
